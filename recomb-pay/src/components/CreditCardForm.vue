@@ -1,12 +1,12 @@
+
+    
+
 <template>
-    <v-container>
-        <v-form @submit.prevent="submitForm" ref="form">
-            <v-row>
-                <v-col cols="12">
-                    <BandeiraForm @bandeira-selected="updateBandeira" />
+    <v-form ref="form" v-model="valid" lazy-validation>
+        <v-row>
+                <v-col cols="12" md="6">
+                    <v-select v-model="bandeira" :items="bandeirasLista" label="bandeira" :rules="[bandeiraRule]"></v-select>
                 </v-col>
-            </v-row>
-            <v-row>
                 <v-col cols="12" md="6">
                     <v-text-field v-model="titular" label="Titular" :rules="[titularRule]"></v-text-field>
                 </v-col>
@@ -26,22 +26,18 @@
                     <v-text-field v-model="numeroCartao" label="Número do Cartão" :rules="[numeroCartaoRule]"></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                    <v-btn type="submit" color="primary">Submit</v-btn>
+                    <v-btn :disabled="!valid" color="success" @click="validate">
+                        Validar
+                    </v-btn>
                 </v-col>
             </v-row>
-        </v-form>
-    </v-container>
-</template>
+    </v-form>
+  </template>
 
 <script>
-import BandeiraForm from './BandeiraForm.vue';
-
-export default {
-    components: {
-        BandeiraForm,
-    },
-    data() {
-        return {
+  export default {
+    data: () => ({
+      valid: true,
             titular: '',
             cpfCnpj: '',
             parcelas: null, // Alterado para null para que o v-select não tenha um valor padrão
@@ -49,8 +45,19 @@ export default {
             validade: '',
             numeroCartao: '',
             bandeira: '',
+            bandeirasLista: ['Visa', 'Mastercard', 'Elo'],
             parcelasLista: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        };
+            snackbar: false,
+    }),
+
+    methods: {
+      validate () {
+        if (this.$refs.form.validate()) {
+          this.snackbar = true
+          console.log('Formulário válido')
+        } 
+      },
+      
     },
     computed: {
         cpfCnpjRule() {
@@ -90,14 +97,9 @@ export default {
         parcelasRule() {
             return (v) => { return !!v || 'Parcelas is required'; };
         },
-    },
-    methods: {
-        submitForm() {
-            console.log(this.titular, this.cpfCnpj, this.parcelas, this.cvv, this.validade, this.numeroCartao, this.bandeira);
-        },
-        updateBandeira(bandeira) {
-            this.bandeira = bandeira;
+        bandeiraRule() {
+            return (v) => { return !!v || 'Bandeira is required'; };
         },
     },
-};
+  }
 </script>
