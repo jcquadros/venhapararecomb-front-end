@@ -17,7 +17,7 @@ que possibilite ao usuário:
 
 2 - Preencher as informações adicionais dependendo do método:
 	
- 	* Cartão de Crédito: Escolha da bandeira e preenchimento das informações (Número de cartão, código CVV, data de vencimento mm/aaaa e Nome do titular, CPF/CNPJ) e número de parcelas
+ 	* Cartão de Crédito: Escolha da bandeira e preenchimento das informações (, código CVV, data de vencimento mm/aaaa e Nome do titular, CPF/CNPJ) e número de parcelas
  	
   	* Boleto: CPF, Nome, Sobrenome e e-mail
 	
