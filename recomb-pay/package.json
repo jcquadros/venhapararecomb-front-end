@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@mdi/font": "5.9.55",
+    "@mercadopago/sdk-js": "^0.0.3",
+    "@mercadopago/sdk-react": "^0.0.18",
     "@vee-validate/rules": "^4.5.8",
     "core-js": "^3.8.3",
     "roboto-fontface": "*",

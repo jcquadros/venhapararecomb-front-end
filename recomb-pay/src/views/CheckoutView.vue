@@ -1,24 +1,29 @@
 <template>
-    <v-container>
-        <v-row>
-            <v-col class="mb-5" cols="12">
-                <h2 class="headline font-weight-bold mb-5">
-                    Checkout
-                </h2>
-                <PaymentMethod/>
-            </v-col>
-        </v-row>
+    <v-container fluid class="pa-0">
+      <v-row no-gutters>
+        <v-col cols="4">
+          <v-card class="pa-5" elevation="12" max-width="300" min-height="100vh">
+            <SummaryProducts/>
+          </v-card>
+        </v-col>
+        <v-col cols="8">
+          <v-card class="pa-5 mt-10 ml-5" elevation="12" max-width="70%" >
+            <PaymentMethod/>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-container>
-
-</template>
-
+  </template>
 <script>
+
 import PaymentMethod from '../components/PaymentMethod.vue';
+import SummaryProducts from '../components/SummaryProducts.vue';
 
 export default {
-    components: {
-        PaymentMethod
-    }
-};
+    components : {
+        PaymentMethod,
+        SummaryProducts
+    },
+}
 
 </script>
