@@ -1,65 +1,70 @@
-
-    
-
 <template>
+    <!-- Formulário de Cartão de Crédito -->
     <v-form ref="form" v-model="valid" lazy-validation>
         <v-row>
-                <v-col cols="12" md="6">
-                    <v-select v-model="bandeira" :items="bandeirasLista" label="bandeira" :rules="[bandeiraRule]"></v-select>
-                </v-col>
-                <v-col cols="12" md="6">
-                    <v-text-field v-model="titular" label="Titular" :rules="[titularRule]"></v-text-field>
-                </v-col>
-                <v-col cols="12" md="6">
-                    <v-text-field v-model="cpfCnpj" label="CPF/CNPJ" :rules="[cpfCnpjRule]"></v-text-field>
-                </v-col>
-                <v-col cols="12" md="6">
-                    <v-select v-model="parcelas" :items="parcelasLista" label="Parcelas" :rules="[parcelasRule]"></v-select>
-                </v-col>
-                <v-col cols="12" md="6">
-                    <v-text-field v-model="cvv" label="CVV" :rules="[cvvRule]"></v-text-field>
-                </v-col>
-                <v-col cols="12" md="6">
-                    <v-text-field v-model="validade" label="Data de Validade" :rules="[validadeRule]"></v-text-field>
-                </v-col>
-                <v-col cols="12" md="6">
-                    <v-text-field v-model="numeroCartao" label="Número do Cartão" :rules="[numeroCartaoRule]"></v-text-field>
-                </v-col>
-                <v-col cols="12">
-                    <v-btn :disabled="!valid" color="success" @click="validate">
-                        Validar
-                    </v-btn>
-                </v-col>
-            </v-row>
+            <!-- Campo de Bandeira -->
+            <v-col cols="12" md="6">
+                <v-select v-model="formData.bandeira" :items="bandeirasLista" label="bandeira" :rules="[bandeiraRule]"></v-select>
+            </v-col>
+            <!-- Campo de Titular -->
+            <v-col cols="12" md="6">
+                <v-text-field v-model="formData.titular" label="Titular" :rules="[titularRule]"></v-text-field>
+            </v-col>
+            <!-- Campo de CPF/CNPJ -->
+            <v-col cols="12" md="6">
+                <v-text-field v-model="formData.cpfCnpj" label="CPF/CNPJ" :rules="[cpfCnpjRule]"></v-text-field>
+            </v-col>
+            <!-- Campo de Número do Cartão -->
+            <v-col cols="12" md="6">
+                <v-text-field v-model="formData.numeroCartao" label="Número do Cartão" :rules="[numeroCartaoRule]"></v-text-field>
+            </v-col>
+            <!-- Campo de CVV -->
+            <v-col cols="12" md="6">
+                <v-text-field v-model="formData.cvv" label="CVV" :rules="[cvvRule]"></v-text-field>
+            </v-col>
+            <!-- Campo de Validade -->
+            <v-col cols="12" md="6">
+                <v-text-field v-model="formData.validade" label="Data de Validade" :rules="[validadeRule]"></v-text-field>
+            </v-col>
+            <!-- Campo de Parcelas -->
+            <v-col cols="12" md="6">
+                <v-select v-model="formData.parcelas" :items="parcelasLista" label="Parcelas" :rules="[parcelasRule]"></v-select>
+            </v-col>
+            
+            <!-- Botão de Validar -->
+            <v-col cols="12">
+                <v-btn :disabled="!valid" color="success" @click="validate">Validar</v-btn>
+            </v-col>
+        </v-row>
     </v-form>
-  </template>
+</template>
 
 <script>
-  export default {
+export default {
     data: () => ({
-      valid: true,
+        valid: true,
+        formData: {
             titular: '',
+            bandeira: '',
             cpfCnpj: '',
-            parcelas: null, // Alterado para null para que o v-select não tenha um valor padrão
-            cvv: '',
+            parcelas: null,
             validade: '',
             numeroCartao: '',
-            bandeira: '',
-            bandeirasLista: ['Visa', 'Mastercard', 'Elo'],
-            parcelasLista: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            snackbar: false,
+            cvv: '',
+        },
+        bandeirasLista: ['Visa', 'Mastercard', 'Elo'],
+        parcelasLista: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     }),
-
     methods: {
-      validate () {
-        if (this.$refs.form.validate()) {
-          this.snackbar = true
-          console.log('Formulário válido')
-        } 
-      },
-      
+        validate() {
+            if (this.$refs.form.validate()) {
+                console.log('Formulário válido');
+                this.$emit('validated', true, this.formData);
+            }
+        },
     },
     computed: {
+        // regras de validação
         cpfCnpjRule() {
             return (v) => {
                 if (!v) return 'CPF/CNPJ is required';
@@ -92,14 +97,20 @@
             };
         },
         titularRule() {
-            return (v) => { return !!v || 'Titular is required'; };
+            return (v) => {
+                return !!v || 'Titular is required';
+            };
         },
         parcelasRule() {
-            return (v) => { return !!v || 'Parcelas is required'; };
+            return (v) => {
+                return !!v || 'Parcelas is required';
+            };
         },
         bandeiraRule() {
-            return (v) => { return !!v || 'Bandeira is required'; };
+            return (v) => {
+                return !!v || 'Bandeira is required';
+            };
         },
     },
-  }
+};
 </script>

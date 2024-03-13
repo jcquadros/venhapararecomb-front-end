@@ -41,52 +41,45 @@ que possibilite ao usuário:
 	
  	* Previsão de entrega
 
-**Escolha as tecnologias que você vai usar e tente montar uma solução completa para rodar a aplicação.**
 
-Para enviar o resultado, basta realiazar um Fork deste repositório e abra um Pull Request, com seu nome.
+# RecombPay
 
-É importante comentar que deve ser enviado apenas o código fonte. Não aceitaremos códigos compilados.
+## Execução do Projeto
+Para executar este projeto, siga os passos abaixo:
 
-Por fim, o candidato deve atualizar o Readme.md com as seguintes informações:
-  
- 1) Documentação da solução;
- 2) Lista dos diferenciais implementados
+1. Certifique-se de ter o Node.js instalado em sua máquina.
+2. Clone este repositório usando o comando:
+""""
+git clone https://github.com/jcquadros/venhapararecomb-front-end
+"""
+3. Navegue até o diretório do projeto:
+"""
+cd recomb-pay
+"""
+4. Instale as dependências do projeto:
+"""
+npm install
+"""
+5. Após a instalação, execute o projeto:
+"""
+npm run serve
+"""
+A seguir o projeto estará disponível em localhost http://localhost:8080/
 
-## Avaliação
+Este projeto consiste em uma aplicação Vue.js que simula uma tela de pagamento fictícia, com duas opções de pagamento disponíveis: uma tela construída do zero e outra utilizando a API do Mercado Pago.
 
-O programa será avaliado levando em conta os seguintes critérios:
-|Critério                    |Valor   |
-|----------------------------|--------|
-|Legibilidade do Código 	   |10      |
-|Documentação do código 	   |10      |
-|Documentação da solução 	   |10      |
-|Componentização             |10      |
-|Preocupação com usabilidade |10      |
-|Total 	                     |50      |
+### Tela de Pagamento Construída do Zero
+A tela de pagamento construída do zero possui os seguintes componentes:
+- **SummaryProducts**: Componente que exibe a lista de produtos selecionados e o preço total.
+- **PaymentMethod**: Componente que permite ao usuário escolher entre diferentes métodos de pagamento (cartão de crédito, boleto, pix) e preencher os dados necessários para cada opção.
+- **CreditCardForm**: Componente específico para o pagamento com cartão de crédito, com campos de preenchimento para bandeira, titular, CPF/CNPJ, número do cartão, CVV, validade e parcelas.
+- **BoletoForm**: Componente específico para o pagamento com boleto, com campos de preenchimento para CPF/CNPJ do pagador.
 
-A pontuação do candidato será a soma dos valores obtidos nos critérios acima.
+### Tela de Pagamento do Mercado Pago
+A tela tem como função mostrar o uso de uma api e não foi implementado a finalização de pagamento. Apenas o formulário de pagamento.
+- **Mercado Pago**: Integração com a API do Mercado Pago (Checkout Bricks) para exibir o formulário de pagamento do Mercado Pago. Toda a implementação desse código foi feita com referência na documentação disponível no site oficial.
 
-## Diferenciais
-
-O candidato pode aumentar a sua pontuação na seleção implementando um ou mais dos itens abaixo:
-|Item                              |Pontos Ganhos  |
-|----------------------------------|---------------|
-|Consumir API (válido mock)        |30             |
-|Implementar Clean Code 	   |20             |
-|Qualidade de Código com SonarQube |15             |
-|Implementar testes unitários 	   |15             |
-|Implementar testes e2e            |30             |
-|Implementar integração continua   |10             |
-|Implementar usando Vue            |10             |
-|Implementar usado Quasar          |20             |  
-|Total                             |150            |
-
-A nota final do candidato será acrescido dos pontos referente ao item implementado corretamente.
-
-## Penalizações
-
-O candidato será desclassificado nas seguintes situações:
-
-1) Submeter um solução que não funcione;
-2) Não cumprir os critérios presentes no seção Avaliação;
-3) Plágio;
+## Lista de Diferenciais implentados
+-**Vuetify**: O projeto foi quase todo implementado utilizando apenas essa biblioteca de estilização.
+-**Mercado Pago API**: uma pequena demostração com a api do mercado pago. 
+-**Vue**: Uso do vue para a criação do projeto.

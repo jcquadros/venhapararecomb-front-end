@@ -1,17 +1,17 @@
 <template>
+    <h3>Produtos</h3>
+    <!-- lista de produtos -->
+    <v-list>
+        <v-list-item v-for="product in products" :key="product.id">
+                <v-list-item-title>{{ product.name }}</v-list-item-title>
+                <v-list-item-subtitle>{{ product.price }}</v-list-item-subtitle>
+        </v-list-item>
+    </v-list>
+   
+    <v-divider></v-divider>
     
-    <v-card-title>
-        <h3>Products</h3>
-    </v-card-title>
-    <v-card-text>
-        <v-list>
-            <v-list-item v-for="product in products" :key="product.id">
-                    <v-list-item-title>{{ product.name }}</v-list-item-title>
-                    <v-list-item-subtitle>{{ product.price }}</v-list-item-subtitle>
-            </v-list-item>
-        </v-list>
-    </v-card-text>
-        
+    <p>Preço Total: {{ getTotalPrice() }}</p>
+
 </template>
 
 <script>
@@ -41,6 +41,13 @@ export default {
             ]
         }
     },
+    methods : {
+        getTotalPrice() {
+            return this.products.reduce((acc, product) => {
+                return acc + product.price
+            }, 0)
+        }
+    }
 }
 
 </script>
