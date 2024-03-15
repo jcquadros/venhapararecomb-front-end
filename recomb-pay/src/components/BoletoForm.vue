@@ -3,24 +3,25 @@
     <v-form ref="form" v-model="valid" lazy-validation>
         <v-row>
             <!-- Campo de Nome -->
-            <v-col cols="12" md="6">
+            <v-col cols="12">
                 <v-text-field v-model="formData.name" label="Nome" required :rules="[nameRule]"></v-text-field>
             </v-col>
             <!-- Campo de Sobrenome -->
-            <v-col cols="12" md="6">
+            <v-col cols="12">
                 <v-text-field v-model="formData.lastName" label="Sobrenome" required :rules="[lastNameRule]"></v-text-field>
             </v-col>
             <!-- Campo de Email -->
-            <v-col cols="12" md="6">
+            <v-col cols="12">
                 <v-text-field v-model="formData.email" label="Email" required :rules="[emailRule]"></v-text-field>
             </v-col>
             <!-- Campo de CPF -->
-            <v-col cols="12" md="6">
+            <v-col cols="12">
                 <v-text-field v-model="formData.cpf" label="CPF" required :rules="[cpfRule]"></v-text-field>
             </v-col>
             <!-- Botão de Validar -->
             <v-col cols="12">
-                <v-btn :disabled="!valid" color="success" @click="validate">Validar</v-btn>
+                <v-spacer></v-spacer>
+                <v-btn :disabled="!valid" @click.prevent.once="validate" color="primary">Confirmar Pagamento</v-btn>
             </v-col>
         </v-row>
     </v-form>
@@ -63,6 +64,7 @@ export default {
                 this.$emit('validated', true, this.formData);
             }
         },
+
     },
 };
 </script>
