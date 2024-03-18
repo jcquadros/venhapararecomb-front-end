@@ -28,7 +28,11 @@ export default {
 <style scoped>
 
 .v-app-bar {
-  background: linear-gradient(to right, #0070f3, #784ba0);
-  color: white;
+  background: #f3f3f3;
+  color: #000;
+}
+
+.v-main {
+  background: linear-gradient(to  right, #0070f3, #784ba0);
 }
 </style>

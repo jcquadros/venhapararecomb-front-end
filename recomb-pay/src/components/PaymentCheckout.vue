@@ -1,30 +1,32 @@
 <template>
-  <v-container style="max-width: 80%">
-    <v-row>
-      <!-- resumo do pagamento -->
-      <v-col cols="12" md="4" order-md="2" >
-        <PaymentSummary :method="selectedMethod" :products="products"/>
-      </v-col>
-
+  <v-container fluid>
+    <v-row justify="center" class="mt-12">
       <!-- seleção do método de pagamento e informações do pagamento -->
-      <v-col cols="12" md="8" order-md="1">
-        <PaymentMethod @method-selected="onMethodSelected" v-if="!selectedMethod " />
+      <v-col cols="12" sm="6" md="4">
 
+        <PaymentMethod @method-selected="onMethodSelected" v-if="!selectedMethod" />
+        
         <!-- Componente PaymentInfo para inserir informações de pagamento -->
-        <v-col cols="12" v-if="selectedMethod && !formValidated">
-          <PaymentInfo  :method="selectedMethod" @validated="onFormValidated"/>
-        </v-col>
-
+        <PaymentInfo  :method="selectedMethod" @validated="onFormValidated" v-if="selectedMethod && !formValidated" />
+        
         <!-- Componente PaymentFeedback para exibir feedback após validação do formulário -->
-        <v-col cols="12" v-if="formValidated">
-          <PaymentFeedback
-            :selected-method="selectedMethod" :boleto-code="boletoCode" :boleto-due-date="boletoDueDate" :boleto-pdf-url="boletoPdfUrl"
-            :pix-qr-code="pixQrCode" :pix-expiration-time="pixExpirationTime"
-          />
-        </v-col>
+        <PaymentFeedback
+        :selected-method="selectedMethod" 
+        :boleto-code="boletoCode" 
+        :boleto-due-date="boletoDueDate" 
+        :boleto-pdf-url="boletoPdfUrl"
+        :pix-qr-code="pixQrCode" 
+        :pix-expiration-time="pixExpirationTime"
+        @payment-completed="paymentCompleted = true"
+        v-if="formValidated && !paymentCompleted"
+        />
+        
+        <!-- resumo do pagamento -->
+        <PaymentSummary :method="selectedMethod" :products="products" v-if="paymentCompleted"/>
       </v-col>
     </v-row>
   </v-container>
+
 </template>
 
 <script>
@@ -43,6 +45,7 @@ export default {
   },
   data() {
     return {
+      paymentCompleted: false,
       selectedMethod: null,
       formValidated: false, // Indica se o formulário de pagamento foi validado
       // Lista de produtos para exibição no resumo do pagamento
@@ -82,7 +85,7 @@ export default {
       boletoPdfUrl: 'https://qualquercoisaesselinkdeboletoehfake.pdf',
       // Dados fictícios para exibição do QR Code do PIX
       pixQrCode: require('@/assets/pix-qrcode.svg'),
-      pixExpirationTime: 600,
+      pixExpirationTime: 300,
     };
   },
   methods: {

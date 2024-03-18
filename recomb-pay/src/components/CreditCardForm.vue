@@ -1,46 +1,49 @@
 <template>
-    <!-- Formulário de Cartão de Crédito -->
-    <v-form ref="form" v-model="valid" lazy-validation>
-        <v-row>
-            <!-- Campo de Bandeira -->
-            <v-col cols="12">
-                <v-select v-model="formData.bandeira" :items="bandeirasLista" label="bandeira" :rules="[bandeiraRule]"></v-select>
-            </v-col>
-            <!-- Campo de Número do Cartão -->
-            <v-col cols="12">
-                <v-text-field v-model="formData.numeroCartao" label="Número do Cartão" :rules="[numeroCartaoRule]"></v-text-field>
-            </v-col>
-            <!-- Campo de CVV -->
-            <v-col cols="12" md="6">
-                <v-text-field v-model="formData.cvv" label="CVV" :rules="[cvvRule]"></v-text-field>
-            </v-col>
-            <!-- Campo de Validade -->
-            <v-col cols="12" md="6">
-                <v-text-field v-model="formData.validade" label="Data de Validade" :rules="[validadeRule]"></v-text-field>
-            </v-col>
-            <!-- Campo de Titular -->
-            <v-col cols="12">
-                <v-text-field v-model="formData.titular" label="Titular" :rules="[titularRule]"></v-text-field>
-            </v-col>
-            <!-- Campo de CPF/CNPJ -->
-            <v-col :cols="selectCols">
-                <v-select v-model="formData.tipoDocumento" :items="documentosLista" label="Tipo de documento" required></v-select>
-            </v-col>
-            <v-col :cols="inputCols"  v-if="isTipoDocumentoSelected">
-                <v-text-field v-model="formData.ocumento" :label="selectedTipoDocumentoLabel" required :rules="[selectedTipoDocumentoRules]"></v-text-field>
-            </v-col>
-            <!-- Campo de Parcelas -->
-            <v-col cols="12">
-                <v-select v-model="formData.parcelas" :items="parcelasLista" label="Parcelas" :rules="[parcelasRule]"></v-select>
-            </v-col>
-            
-            <!-- Botão de Validar -->
-            <v-col cols="12">
-                <v-spacer></v-spacer>
-                <v-btn :disabled="!valid"  @click.prevent.once="validate" color="primary">Confirmar Pagamento</v-btn>
-            </v-col>
-        </v-row>
-    </v-form>
+    <v-card>
+        <v-card-title>Formulário de Cartão de Crédito</v-card-title>
+        <v-card-text>
+            <!-- Formulário de Cartão de Crédito -->
+            <v-form ref="form" v-model="valid" lazy-validation>
+                <v-row>
+                    <!-- Campo de Bandeira -->
+                    <v-col cols="12">
+                        <v-select v-model="formData.bandeira" :items="bandeirasLista" label="bandeira" :rules="[bandeiraRule]"></v-select>
+                    </v-col>
+                    <!-- Campo de Número do Cartão -->
+                    <v-col cols="12">
+                        <v-text-field v-model="formData.numeroCartao" label="Número do Cartão" :rules="[numeroCartaoRule]"></v-text-field>
+                    </v-col>
+                    <!-- Campo de CVV -->
+                    <v-col cols="12" md="6">
+                        <v-text-field v-model="formData.cvv" label="CVV" :rules="[cvvRule]"></v-text-field>
+                    </v-col>
+                    <!-- Campo de Validade -->
+                    <v-col cols="12" md="6">
+                        <v-text-field v-model="formData.validade" label="Data de Validade" :rules="[validadeRule]"></v-text-field>
+                    </v-col>
+                    <!-- Campo de Titular -->
+                    <v-col cols="12">
+                        <v-text-field v-model="formData.titular" label="Titular" :rules="[titularRule]"></v-text-field>
+                    </v-col>
+                    <!-- Campo de CPF/CNPJ -->
+                    <v-col :cols="selectCols">
+                        <v-select v-model="formData.tipoDocumento" :items="documentosLista" label="Tipo de documento" required></v-select>
+                    </v-col>
+                    <v-col :cols="inputCols"  v-if="isTipoDocumentoSelected">
+                        <v-text-field v-model="formData.ocumento" :label="selectedTipoDocumentoLabel" required :rules="[selectedTipoDocumentoRules]"></v-text-field>
+                    </v-col>
+                    <!-- Campo de Parcelas -->
+                    <v-col cols="12">
+                        <v-select v-model="formData.parcelas" :items="parcelasLista" label="Parcelas" :rules="[parcelasRule]"></v-select>
+                    </v-col>
+                </v-row>
+            </v-form>
+        </v-card-text>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn :disabled="!valid"  @click.prevent.once="validate" color="primary">Confirmar Pagamento</v-btn>
+        </v-card-actions>
+    </v-card>
 </template>
 
 <script>

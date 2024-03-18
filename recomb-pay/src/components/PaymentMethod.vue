@@ -1,5 +1,4 @@
 <template>
-  <v-container>
      <!-- Card para exibir as opções de pagamento -->
     <v-card>
       <v-card-title>Como você prefere pagar?</v-card-title>
@@ -15,17 +14,20 @@
                 <v-icon size="48" class="mr-4" :class="{ 'selected': method.value === selectedMethod.value }">{{ getIcon(method.value) }}</v-icon>
                 <!-- Nome do método de pagamento -->
                 <span :class="{ 'selected': method.value === selectedMethod.value }">{{ method.name }}</span>
-                <!-- Botão de rádio invisível associado ao método de pagamento -->
+                <!-- Botão de escolha invisível associado ao método de pagamento -->
                 <v-radio :value="method" :label="method.name" class="d-none"></v-radio>
               </v-card>
             </v-col>
           </v-row>
         </v-radio-group>
+       
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
         <!-- Botão de continuar desabilitado até que um método de pagamento seja selecionado -->
         <v-btn :disabled="!btn" @click="sendSelectedMethod" color="primary">Continuar</v-btn>
-      </v-card-text>
+      </v-card-actions>
     </v-card>
-  </v-container>
 </template>
 
 <script>

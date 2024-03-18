@@ -1,19 +1,8 @@
 <template>
-    <v-container>
-        <v-row>
-            <v-col>
-                <!-- Card para exibir o formulário de pagamento -->
-                <v-card>
-                    <v-card-title>Informações adicionais</v-card-title>
-                    <v-card-text>
-                        <CreditCardForm v-if="method === 'credit-card'" @validated="onFormValidated" />
-                        <BoletoForm v-else-if="method === 'boleto-bancario'" @validated="onFormValidated" />
-                        <PixForm v-else-if="method === 'pix'" @validated="onFormValidated" />
-                    </v-card-text>
-                </v-card>
-            </v-col>
-        </v-row>
-    </v-container>
+    <!--Opções para exibir o formulário de pagamento -->
+    <CreditCardForm v-if="method === 'credit-card'" @validated="onFormValidated" />
+    <BoletoForm v-else-if="method === 'boleto-bancario'" @validated="onFormValidated" />
+    <PixForm v-else-if="method === 'pix'" @validated="onFormValidated" />
 </template>
 
 <script>
@@ -50,6 +39,3 @@ export default {
 
 };
 </script>
-
-<style scoped>
-</style>

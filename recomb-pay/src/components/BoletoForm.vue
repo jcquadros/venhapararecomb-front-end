@@ -1,30 +1,36 @@
 <template>
-    <!-- Formulário usando Vuetify -->
-    <v-form ref="form" v-model="valid" lazy-validation>
-        <v-row>
-            <!-- Campo de Nome -->
-            <v-col cols="12">
-                <v-text-field v-model="formData.name" label="Nome" required :rules="[nameRule]"></v-text-field>
-            </v-col>
-            <!-- Campo de Sobrenome -->
-            <v-col cols="12">
-                <v-text-field v-model="formData.lastName" label="Sobrenome" required :rules="[lastNameRule]"></v-text-field>
-            </v-col>
-            <!-- Campo de Email -->
-            <v-col cols="12">
-                <v-text-field v-model="formData.email" label="Email" required :rules="[emailRule]"></v-text-field>
-            </v-col>
-            <!-- Campo de CPF -->
-            <v-col cols="12">
-                <v-text-field v-model="formData.cpf" label="CPF" required :rules="[cpfRule]"></v-text-field>
-            </v-col>
+    <v-card>
+        <v-card-title>Formulário de Boleto Bancário</v-card-title>
+        <v-card-text>
+            <!-- Formulário usando Vuetify -->
+            <v-form ref="form" v-model="valid" lazy-validation>
+                <v-row>
+                    <!-- Campo de Nome -->
+                    <v-col cols="12">
+                        <v-text-field v-model="formData.name" label="Nome" required :rules="[nameRule]"></v-text-field>
+                    </v-col>
+                    <!-- Campo de Sobrenome -->
+                    <v-col cols="12">
+                        <v-text-field v-model="formData.lastName" label="Sobrenome" required :rules="[lastNameRule]"></v-text-field>
+                    </v-col>
+                    <!-- Campo de Email -->
+                    <v-col cols="12">
+                        <v-text-field v-model="formData.email" label="Email" required :rules="[emailRule]"></v-text-field>
+                    </v-col>
+                    <!-- Campo de CPF -->
+                    <v-col cols="12">
+                        <v-text-field v-model="formData.cpf" label="CPF" required :rules="[cpfRule]"></v-text-field>
+                    </v-col>
+                    
+                </v-row>
+            </v-form>
+        </v-card-text>
+        <v-card-actions>
+            <v-spacer></v-spacer>
             <!-- Botão de Validar -->
-            <v-col cols="12">
-                <v-spacer></v-spacer>
-                <v-btn :disabled="!valid" @click.prevent.once="validate" color="primary">Confirmar Pagamento</v-btn>
-            </v-col>
-        </v-row>
-    </v-form>
+            <v-btn :disabled="!valid" @click.prevent.once="validate" color="primary">Confirmar Pagamento</v-btn>
+        </v-card-actions>
+    </v-card>
 </template>
 
 <script>

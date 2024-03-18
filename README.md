@@ -7,10 +7,10 @@ Este projeto consiste em um frontend para um módulo de pagamentos. Foi desenvol
 	* PaymentMethod - possibilita o usuário escolher a opção de pagamento.
 	* PaymentInfo - possibilita o usuário vizualizar o formulário correspondente ao método selecionado. Este médodo se relaciona com outros 3 componentes CardForm, BoletoForm e PixForm que são os formulários especificos de cada método.
 	* PaymentFeedBack - mostra o resultado do pagamento. Se for cartão de crédito, exibe uma mensagem de aguardar aprovação. Se for boleto, exibe um código de barras qualquer uma data de vencimento e um link fake para baixar o pdf. Por fim, se for pix, exibe um QrCode.
-	* PaymentSummary - exibe os produtos selecionados para a compra com foto, titulo, descrição, preço. Preço total da compra, previsão de entrega e data de compra.
+	* PaymentSummary - exibe os produtos selecionados para a compra com foto, titulo, descrição, preço. Preço total da compra, método dde pagamento previsão de entrega e data de compra.
 
 *A execução*
-- Para executar a aplicação tenha o node instalado no computador e execute:
+- Para executar a aplicação tenha o node e vuecli instalado no computador e execute:
 ```
 npm install
 ```

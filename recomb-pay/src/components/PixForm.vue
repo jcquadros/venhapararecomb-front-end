@@ -1,14 +1,16 @@
 <template>
-    <v-form ref="form" v-model="valid">
-        <v-row>
-            <!-- Botao validar -->
-            <v-col cols="12">
-                <v-spacer></v-spacer>
-                <v-btn @click.prevent.once="validate" color="primary">Confirmar Pagamento</v-btn>
-                
-            </v-col>
-        </v-row>
-    </v-form>
+    <v-card>
+        <v-card-title>Formulário de Pix</v-card-title>
+        <v-card-text>
+            <v-form ref="form" v-model="valid">
+            </v-form>
+        </v-card-text>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <!-- Botão de Validar -->
+            <v-btn @click.prevent.once="validate" color="primary">Confirmar Pagamento</v-btn>
+        </v-card-actions>
+    </v-card>
 </template>
 
 <script>
