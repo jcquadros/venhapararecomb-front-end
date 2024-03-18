@@ -10,7 +10,7 @@ Este projeto consiste em um frontend para um módulo de pagamentos. Foi desenvol
 	* PaymentSummary - exibe os produtos selecionados para a compra com foto, titulo, descrição, preço. Preço total da compra, método dde pagamento previsão de entrega e data de compra.
 
 *A execução*
-- Para executar a aplicação tenha o node e vuecli instalado no computador e execute:
+- Para executar a aplicação tenha o node e vuecli instalados no computador, entre no diretório recomb-pay e execute:
 ```
 npm install
 ```
